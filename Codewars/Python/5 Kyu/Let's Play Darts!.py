@@ -1,65 +1,33 @@
 import math
 def get_score(x, y):
 
-
     bullseye_inner_ring_radius = 6.35
     bullseye_outer_ring_radius = 15.9
     triple_outer_ring_radius = 107
     triple_inner_ring_radius = 99
     double_inner_ring_radius = 162
     double_outer_ring_radius = 170
-    returnstring = ""
+    segment_size_degrees = 18
+    signed = False
+    score = ""
 
     # Pythagoras' theorem. B_length is also the radius. Don't be confused by "hypot",
     # as it's the hypotenuse of the x and y of the dart position (aka, the length of C).
     radius = math.hypot(x, y)
 
- #================== Edge Cases ================
+    # =============== BullsEye Check ===============
     if radius > double_outer_ring_radius:
         return "X"
 
     if radius <= bullseye_inner_ring_radius:
         return "DB"
-    elif  bullseye_inner_ring_radius<=radius <= bullseye_outer_ring_radius:
+    elif bullseye_inner_ring_radius <= radius <= bullseye_outer_ring_radius:
         return "SB"
-#===============================================
-    signed = False
+    # ===============================================
+
+    # Check if x value is positive or negative.
     if x < 0:
-        signed = True
-
-
-
-
-
-
-    """
-                           /|
-                          / |
-                         /  |
-                     A  /   |
-                       /    |  B
-                      /     |
-                     /      |
-                    /_______|
-                        C
-    A = distance between where the dart hit and the top of the board.                    
-    B = distance between the top and the center of the board.
-    C = distance between the center of the board and the where the dart hit.
-    
-    NOTE: TRIANGLES ARE NOT ALWAYS RIGHT ANGLES. I JUST CANT DRAW NON RIGHT-ANGLED TRIANGLES IN ASCII.
-    
-    """
-
-    #coordinates
-
-    center_of_board = {"x": 0, "y": 0}
-    top_of_board = {"x": 0, "y": double_outer_ring_radius}
-    dart_location = {"x": x, "y": y}
-
-    A_length = math.sqrt(((x - top_of_board.get("x")) ** 2) + ((y - top_of_board.get("y")) ** 2))  # The Distance Formula.
-    B_length = double_outer_ring_radius
-    C_length = radius
-
+        signed = True     
 
     """
                            /|
@@ -72,80 +40,57 @@ def get_score(x, y):
                     /_______| 
                         C    x
                         
-    x = angle I need to calculate.
-    A = length of side opposite the angle.
-    B and C  = the lengths of the other sides.
+    x = Bearing. I need to work it out so I can determine which segment of the board the dart landed in.
+    A = Distance between where the dart hit and the top of the board.                    
+    B = Distance between the top and the center of the board.
+    C = Distance between the center of the board and the where the dart hit.
     
-    these are necessary for the cosine rule formula.
+    NOTE: TRIANGLES ARE NOT ALWAYS RIGHT ANGLES. I JUST CANT DRAW NON RIGHT-ANGLED TRIANGLES IN ASCII.
+    
+    All of these values are necessary for the cosine rule formula, and the distance formula.
 
     """
+
+    # coordinates
+
+    center_of_board = {"x": 0, "y": 0}
+    top_of_board = {"x": 0, "y": double_outer_ring_radius}
+    dart_location = {"x": x, "y": y}
+
+    A_length = math.sqrt(((x - top_of_board.get("x")) ** 2) + ((y - top_of_board.get("y")) ** 2))  # The Distance Formula.
+    B_length = double_outer_ring_radius
+    C_length = radius
 
     A_sqr = A_length ** 2
     B_sqr = B_length ** 2
     C_sqr = C_length ** 2
 
-    bearing = math.degrees(math.acos((B_sqr + C_sqr - A_sqr) / (2 * B_length * C_length)))  # cosine rule
+    bearing = math.degrees(math.acos((B_sqr + C_sqr - A_sqr) / (2 * B_length * C_length)))  # The Cosine Rule.
 
+    # Check if x is signed (a negative number).
+    # If this wasn't done, there would be no way to determine if the dart was on the right.
+    # or left side of the center.
     if signed:
         bearing = 360 - bearing
 
-    #Check if dart landed in a double or triple area
+    # Check if dart landed in a double or triple area.
     if triple_inner_ring_radius <= radius <= triple_outer_ring_radius:
-        returnstring += "T"
+        score += "T"
     elif double_inner_ring_radius <= radius <= double_outer_ring_radius:
-        returnstring += "D"
+        score += "D"
 
-    #use bearing to determine which number dart landed in.
-    ####REFACTOR THIS. FIND BETTER WAY TO DETERMINE NUMBER####
-    if bearing <= 9 or bearing >= 351:
-        returnstring += "20"
-    elif 9 <= bearing <= 27:
-        returnstring += "1"
-    elif 27 <= bearing <= 45:
-        returnstring += "18"
-    elif 45 <= bearing <= 63:
-        returnstring += "4"
-    elif 63 <= bearing <= 81:
-        returnstring += "13"
-    elif 81 <= bearing <= 99:
-        returnstring += "6"
-    elif 99 <= bearing <= 117:
-        returnstring += "10"
-    elif 117 <= bearing <= 135:
-        returnstring += "15"
-    elif 135 <= bearing <= 153:
-        returnstring += "2"
-    elif 153 <= bearing <= 171:
-        returnstring += "17"
-    elif 171 <= bearing <= 189:
-        returnstring += "3"
-    elif 189 <= bearing <= 207:
-        returnstring += "19"
-    elif 207 <= bearing <= 225:
-        returnstring += "7"
-    elif 225 <= bearing <= 243:
-        returnstring += "16"
-    elif 243 <= bearing <= 261:
-        returnstring += "8"
-    elif 261 <= bearing <= 279:
-        returnstring += "11"
-    elif 279 <= bearing <= 297:
-        returnstring += "14"
-    elif 297 <= bearing <= 315:
-        returnstring += "9"
-    elif 315 <= bearing <= 333:
-        returnstring += "12"
-    elif 333 <= bearing <= 351:
-        returnstring += "5"
+    # In the format [i, j], this contains the lower bound of a bearing, i, and the segment value, j.
+    bearings_to_segments = [[-9, 20], [9, 1], [27, 18],[45, 4], [63, 13], [81, 6], [99, 10], [117, 15],
+                            [135, 2], [153, 17], [171, 3], [189, 19], [207, 7], [225, 16], [243, 8],
+                            [261, 11], [279, 14], [297, 9], [315, 12], [333, 5]]
 
-    return returnstring
+    # Use bearings_to_segments to determine which number dart landed in.
+    # Subtracting the value of segment size is necessary, as otherwise the every dart will be shifted by one.
+    # Segment around the dart board.
+    for i, j in bearings_to_segments:
+        if (bearing - segment_size_degrees) <= i:
+            score += str(j)
+            return score
 
-
-##test stuff##
-print(get_score(55.53, -87.95))
-
-
-
-
-
-
+    score += "20"
+    return score
