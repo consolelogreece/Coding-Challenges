@@ -1,0 +1,70 @@
+////////////////////////////Bomb 1//////////////////////////////
+
+Bomb.diffuse(Bomb.key)
+
+////////////////////////////Bomb 2//////////////////////////////
+
+for (var i = 0; i < 5; i++) {Bomb.diffuse(i)}
+
+////////////////////////////Bomb 3//////////////////////////////
+
+Bomb.diffuse(this.BombKey)
+
+////////////////////////////Bomb 4//////////////////////////////
+
+function diffuseTheBomb(){ return true; }
+
+Bomb.diffuse();
+
+////////////////////////////Bomb 5//////////////////////////////
+
+Bomb.diffuse(3.14159)
+
+////////////////////////////Bomb 6//////////////////////////////
+
+Bomb.diffuse(Date.now - 126144000000)
+
+////////////////////////////Bomb 7//////////////////////////////
+
+Bomb.diffuse(Object.freeze({key:43}))
+
+////////////////////////////Bomb 8//////////////////////////////
+let flag = false;
+
+let Bomb_8 = {};
+
+Bomb_8.valueOf = function(){
+   if (flag) {
+     flag = false;
+     return 100
+   } else {
+     flag = true;
+     return 1
+   }
+}
+
+Bomb.diffuse(Bomb_8)
+////////////////////////////Bomb 9//////////////////////////////
+
+flag = false;
+
+Math.random = function(){
+    if (!flag) {
+      flag = true;
+       return 0.5
+    } 
+    return 1  
+  }
+
+Bomb.diffuse(42)
+
+////////////////////////////Bomb 10//////////////////////////////
+
+Array.prototype.toString = function(){
+    return 42 / 3;
+}
+
+Bomb.diffuse("eWVz")
+
+
+//https://www.codewars.com/kata/54d558c72a5e542c0600060f
