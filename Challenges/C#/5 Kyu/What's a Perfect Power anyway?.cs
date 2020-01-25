@@ -12,10 +12,8 @@ public class PerfectPower
         {
             var x = (decimal)Math.Pow(n, (1.0 / curRoot));
 
-            var isInteger = x % 1 == 0;
-
-            if (isInteger) return ((int)x, (int)curRoot);
-            else if(x < 2) return null;;
+            if (x % 1 == 0) return ((int)x, (int)curRoot);
+            else if(x < 2) return null;
             
             curRoot++;
         }
