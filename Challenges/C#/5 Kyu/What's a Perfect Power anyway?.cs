@@ -1,3 +1,5 @@
+using System;
+
 public class PerfectPower
 {
     public static (int, int)? IsPerfectPower(int n)
@@ -8,20 +10,15 @@ public class PerfectPower
         
         while(true)
         {
-            var x = nroot(n, curRoot);
+            var x = (decimal)Math.Pow(n, (1.0 / curRoot));
 
             var isInteger = x % 1 == 0;
 
             if (isInteger) return ((int)x, (int)curRoot);
-            else if(x < 2) return null;
+            else if(x < 2) return null;;
             
             curRoot++;
         }
-    }
-
-    private static decimal nroot(double num, double root)
-    {
-        return (decimal)Math.Pow(num, (1.0 / root));
     }
 }
 
