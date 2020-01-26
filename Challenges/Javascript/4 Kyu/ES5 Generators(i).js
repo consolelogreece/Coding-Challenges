@@ -40,8 +40,6 @@ function fibonacciSeq() {
   }
 }
 
-
-
 function rangeSeq(start, step) {
    let currentNumber = start - step;
    return function(){

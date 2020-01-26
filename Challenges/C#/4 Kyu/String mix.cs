@@ -34,7 +34,6 @@ public class Mixing
         foreach (var cons in s1Constituants)
             map.Add(cons.Char, new int[] { cons.Count, 1 });
 
-
         foreach (var cons in s2Constituants)
         {
             char key = cons.Char;
@@ -56,7 +55,6 @@ public class Mixing
         mapDict = map;
     }
 
-
     public static string Mix(string s1, string s2)
     {
         string formattedStr1 = removeAllNonNumericAndNonLowercase(s1);
@@ -76,7 +74,6 @@ public class Mixing
             string s1ors2 = ((mapDict[el.Key][1] == Int32.MaxValue) ? "=" : mapDict[el.Key][1].ToString()) + ":";
 
             result.Append(s1ors2);
-
 
             for (int i = 0; i < mapDict[el.Key][0]; i++)
             {

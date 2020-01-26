@@ -1,6 +1,5 @@
 import re
 
-
 def to_camel_case(text):
     text = re.split(r'[-_]', text)
     for i in range(1, len(text)):

@@ -29,7 +29,6 @@ def convert_char_to_six_bit_binary(string):
 
     return decimalbinarray
 
-
 def binary_to_decimal(number):
     result = 0
     for bit in number:
@@ -38,13 +37,11 @@ def binary_to_decimal(number):
             result += 1
     return result
 
-
 def binary_array_to_decimal(array):
     int_array = []
     for entry in array:
         int_array.append(binary_to_decimal(entry))
     return int_array
-
 
 def decimal_to_base64_char(array):
     b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
@@ -52,7 +49,6 @@ def decimal_to_base64_char(array):
     for decimal in array:
         returnString += b64[decimal]
     return returnString
-
 
 def convert_char_to_eight_bit_binary(string):
     b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
@@ -75,9 +71,7 @@ def convert_char_to_eight_bit_binary(string):
             base128binstring[i + 4] +  base128binstring[i + 5] +  base128binstring[i + 6] +  base128binstring[i + 7])
 
 
-
     return base128binarray
-
 
 
 def decimal_to_base128_char(array):
@@ -85,7 +79,6 @@ def decimal_to_base128_char(array):
     for decimal in array:
         returnString += chr(decimal)
     return returnString
-
 
 
 def to_base_64(string):
@@ -100,7 +93,6 @@ def to_base_64(string):
             base64string += ("=" * (3 - mod_3))
 
     return base64string
-
 
 
 def from_base_64(string):

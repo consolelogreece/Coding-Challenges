@@ -13,7 +13,6 @@ def array_diff(a, b):
         del a[remove_queue[i]]
     return a
 
-
 #testing stuff#
 a = ([1, 2])
 b = [1]

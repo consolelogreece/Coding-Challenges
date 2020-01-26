@@ -27,7 +27,6 @@ def solve(s):
                 string+= consonants[0]
                 del consonants[0]
 
-
     elif difference == -1:
         while 1:
             string += consonants[0]
@@ -42,7 +41,6 @@ def solve(s):
         for k in range(len(consonants)):
             string += vowels[k]
             string += consonants[k]
-
 
 
     else:

@@ -3,7 +3,6 @@ using System.Text;
 
 public class Fracts
 {
-
     public static string convertFrac(long[,] lst)
     {
         if (lst == null || lst.Length == 0) return "";
@@ -26,8 +25,6 @@ public class Fracts
         return retstr.ToString();
     }
 
-
-
     public static long findLargestDenom(long[,] lst)
     {
         long largestDenom = lst[0, 1];
@@ -37,8 +34,6 @@ public class Fracts
         }
         return largestDenom;
     }
-
-
 
     public static long findSmallestCommonDenom(long[,] lst, long largestDenomInList)
     {

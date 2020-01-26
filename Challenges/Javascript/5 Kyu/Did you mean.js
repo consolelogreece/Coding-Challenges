@@ -53,7 +53,6 @@ Dictionary.prototype.findMostSimilar = function(term) {
   })
   return lowestCostWord;
 
-
 }
 
 //https://www.codewars.com/kata/5259510fc76e59579e0009d4

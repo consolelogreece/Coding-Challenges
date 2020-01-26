@@ -19,8 +19,6 @@ function smallestCommons(arr) {
             }
         }
 
-
-
         if (test == true) {
             return lowestCommon;
         } else {
@@ -28,13 +26,7 @@ function smallestCommons(arr) {
             lowestCommon += lowest;
 
         }
-
-
-
     }
-
-
 }
-
 
 smallestCommons([1, 13]);

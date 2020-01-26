@@ -44,7 +44,6 @@ namespace Kata
             return retStr.ToString();
         }
 
-
         public static string Decode(string input)
         {
             if (String.IsNullOrEmpty(input)) return "";

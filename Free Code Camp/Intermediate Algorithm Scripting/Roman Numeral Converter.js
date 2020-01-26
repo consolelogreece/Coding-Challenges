@@ -21,7 +21,6 @@ function convertToRoman(number) {
                     }
 
 
-
                 } else {
 
                     if (num == 4) {
@@ -62,7 +61,6 @@ case 2:
 
                 break;
 
-
             case 3:
                 if ((num - 500) >= 0) {
 
@@ -74,7 +72,6 @@ case 2:
                         numeralstring += "D";
                         num -= 500;
                     }
-
 
 
                 } else {
@@ -89,7 +86,6 @@ case 2:
                 }
 
                 break;
-
 
             default:
                 numeralstring += "M";

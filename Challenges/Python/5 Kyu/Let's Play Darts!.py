@@ -95,11 +95,8 @@ def get_score(x, y):
     score += "20"
     return score
 
-
 # # test stuff # #
 print(get_score(18.449628609147, 145.97303885108306))
-
-
 
 
 
