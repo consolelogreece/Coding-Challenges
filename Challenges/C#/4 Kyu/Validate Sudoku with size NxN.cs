@@ -24,7 +24,7 @@ class Sudoku
     bool areColsValid = AreColsValid();
     bool areSubsquaresValid = AreSubsquaresValid();
 
-    return areColsValid && areColsValid && areSubsquaresValid;
+    return areRowsValid && areColsValid && areSubsquaresValid;
   }
   
   private bool IsSodukuFormattedCorrectly()
