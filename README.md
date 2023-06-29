@@ -1,4 +1,6 @@
-# Coding-Challenges
+# Coding Challenges
 
-Note: In many cases, I could use a module/library. However, 'reinventing the wheel', so to speak, was part of many of the challenges.
-Also, my code could be shorter, however it's my belief that readable code is more important than fewer LOC. 
+This repository contains a record of different coding challenges I have completed from various different sources.
+
+- Most challenges are from Codewars (which is similar to leetcode).
+- For Codewars challenges, the lower the Kyu, the harder the challenge. A link to the challenge on Codewars can be found as a comment at the bottom of each file.

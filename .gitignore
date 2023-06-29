@@ -1,5 +1,11 @@
 /venv
 
 /.idea
+.vscode
+.vscode/
+.vscode/*
 
 test file.py
+
+*.exe
+*.json
